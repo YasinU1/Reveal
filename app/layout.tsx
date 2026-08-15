@@ -16,7 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Reveal — Real-Time Misinformation Detection",
+  title: "Reveal: Real-Time Misinformation Detection",
   description:
     "Reveal flags misinformation in real time during live debates, while you browse, or in any app.",
 };

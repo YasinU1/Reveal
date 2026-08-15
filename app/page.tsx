@@ -470,12 +470,12 @@ function Waitlist() {
       if (res.status === 409) {
         setError("You're already on the list.");
       } else if (!res.ok) {
-        setError("Something went wrong — try again.");
+        setError("Something went wrong. Try again.");
       } else {
         setDone(true);
       }
     } catch {
-      setError("Something went wrong — try again.");
+      setError("Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }
