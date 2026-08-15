@@ -219,27 +219,6 @@ function Demo() {
   );
 }
 
-// ─── Social proof ─────────────────────────────────────────────────────────────
-
-const LOGOS = ["The Guardian", "Reuters", "PolitiFact", "FullFact", "Snopes", "AP News"];
-
-function SocialProof() {
-  return (
-    <section className="py-12 border-t border-[#e8e8e8]">
-      <p className="text-center text-xs text-[#9ca3af] uppercase tracking-widest mb-8">
-        Trusted by early partners
-      </p>
-      <div className="mx-auto max-w-4xl px-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-        {LOGOS.map((name) => (
-          <span key={name} className="text-sm font-semibold text-[#c4c4c4]">
-            {name}
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 // ─── Features ─────────────────────────────────────────────────────────────────
 
 function Features() {
@@ -642,7 +621,6 @@ export default function Page() {
       <main>
         <Hero />
         <Demo />
-        <SocialProof />
         <Features />
         <ExtensionSection />
         <Trust />
