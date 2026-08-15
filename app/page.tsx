@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 // ─── Nav ─────────────────────────────────────────────────────────────────────
 
@@ -34,6 +34,7 @@ function Nav() {
         </a>
 
         <nav className="hidden md:flex items-center gap-7 text-sm text-[#6b6b6b]">
+          <a href="#demo" className="hover:text-[#0a0a0a] transition-colors">Demo</a>
           <a href="#features" className="hover:text-[#0a0a0a] transition-colors">Features</a>
           <a href="#extension" className="hover:text-[#0a0a0a] transition-colors">Extension</a>
           <a href="#faq" className="hover:text-[#0a0a0a] transition-colors">FAQ</a>
@@ -147,6 +148,71 @@ function Hero() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Demo ─────────────────────────────────────────────────────────────────────
+
+function Demo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  function togglePlay() {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play();
+      setPlaying(true);
+    } else {
+      video.pause();
+      setPlaying(false);
+    }
+  }
+
+  return (
+    <section id="demo" className="py-20 px-6 border-t border-[#e8e8e8]">
+      <div className="mx-auto max-w-3xl text-center mb-10">
+        <p className="text-xs font-semibold text-[#2563eb] uppercase tracking-widest mb-3">Watch it work</p>
+        <h2
+          style={{ fontFamily: "var(--font-space-grotesk)" }}
+          className="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mb-3"
+        >
+          See Reveal catch a claim in real time.
+        </h2>
+        <p className="text-[#6b6b6b] text-base max-w-lg mx-auto">
+          A 20-second look at Reveal flagging a misleading statement as it&rsquo;s spoken.
+        </p>
+      </div>
+
+      <div className="mx-auto max-w-3xl">
+        <div className="group relative rounded-xl overflow-hidden border border-[#e8e8e8] shadow-sm bg-black">
+          <video
+            ref={videoRef}
+            className="w-full h-auto block"
+            src="/demo/reveal-demo.mp4"
+            poster="/demo/reveal-demo-poster.jpg"
+            playsInline
+            controls={playing}
+            onClick={togglePlay}
+            onEnded={() => setPlaying(false)}
+            onPause={() => setPlaying(false)}
+          />
+          {!playing && (
+            <button
+              onClick={togglePlay}
+              aria-label="Play demo video"
+              className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors"
+            >
+              <span className="w-16 h-16 rounded-full bg-white/95 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M6 3.5v13l11-6.5-11-6.5z" fill="#0a0a0a" />
+                </svg>
+              </span>
+            </button>
+          )}
         </div>
       </div>
     </section>
@@ -555,6 +621,7 @@ function Footer() {
           <span style={{ fontFamily: "var(--font-space-grotesk)" }} className="text-xs font-semibold">Reveal</span>
         </div>
         <nav className="flex items-center gap-5 text-xs text-[#9ca3af]">
+          <a href="#demo" className="hover:text-[#6b6b6b] transition-colors">Demo</a>
           <a href="#features" className="hover:text-[#6b6b6b] transition-colors">Features</a>
           <a href="#extension" className="hover:text-[#6b6b6b] transition-colors">Extension</a>
           <a href="#faq" className="hover:text-[#6b6b6b] transition-colors">FAQ</a>
@@ -574,6 +641,7 @@ export default function Page() {
       <Nav />
       <main>
         <Hero />
+        <Demo />
         <SocialProof />
         <Features />
         <ExtensionSection />
